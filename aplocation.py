@@ -58,11 +58,11 @@ def haminaData(units,copiedData) -> list:
     for aps in haminaData['accessPoints']:
         if measurementSystem == 'imperial':
             logicalX = imperialFormatted(metricImperial(apLocation(zeroPointX, aps['x'])))
-            logicalY = imperialFormatted(imperialMetric(apLocation(zeroPointY,aps['y'])))
+            logicalY = imperialFormatted(imperialMetric((apLocation(zeroPointY,aps['y']) * -1)))
             logicalZ = imperialFormatted(imperialMetric(aps['installHeight']))
         else:
             logicalX = '%.3f'%(str(apLocation(zeroPointX, aps['x']))) + ' m'
-            logicalY = '%.3f'%(str(apLocation(zeroPointY, aps['y']))) + ' m'
+            logicalY = '%.3f'%(str((apLocation(zeroPointY, aps['y']) * -1))) + ' m'
             logicalZ = '%.3f'%(aps['installHeight'])
         absoluteZeroX, absoluteZeroY, absoluteZeroZ = aps['x'], aps['y'], aps['installHeight']
         apName = aps['name']+ ' X:'+ str(logicalX) +' Y:'+ str(logicalY)
