@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <form method="POST">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Hamina AP Measurements</title>
+        </head>
+        <body>
+            <h1>User Preferences</h1>
+            <h3>Select measurement system(s)</h3>
+            <div>
+                <label for="units">Metric</label>
+                <input type="radio" value="metric" name="neededUnits" />
+                <label for="units"">Imperial</label>
+                <input type="radio" value="imperial" name="neededUnits" checked />
+            </div>
+            <h3>Delivery</h3>
+            <div>
+                <label for="csv">CSV (download):</label>
+                <input type="checkbox" value="csv" name="fileReq" />
+                <label for="json">JSON (download):</label>
+                <input type="checkbox" value="json" name="fileReq" />
+            </div>        
+            <h1>Hamina Copied Data</h1>
+            <textarea name="copiedData" rows="35" cols="150"></textarea>
+            <br><input type="submit" value="Submit">
+        </body>
+    </form>
+</html>

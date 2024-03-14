@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AP Location results</title>
+    </head>
+    <p><a href="{{ url_for('fileDownload',filename=filename) }}">Download</a></p>
+    <body>
+    <pre>
+    {% for ap in aps %}
+    {{ ap }}
+    {% endfor %}
+    </body>
+</html>
+	
