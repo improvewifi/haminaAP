@@ -1,5 +1,7 @@
 
 
+
+
 import json
 import pandas as pd
 from datetime import datetime
@@ -12,7 +14,7 @@ def metricImperial(val) -> float:
     return val/.3048
 
 def imperialFormatted(val) -> str:
-    return str(int(val)) + "'" + str(int(val %1 * 12)) + '"'
+    return str(int(val)) + 'ft ' + str(int(val %1 * 12)) + 'in'
 
 def apLocation(zeroPoint: float, apCoordinate: float) -> str: #Only one coordinate at a time
     return apCoordinate - zeroPoint
@@ -27,42 +29,33 @@ def haminaData(units,copiedData) -> list:
     if 'mapNotes' in haminaData.keys():
         for notes in haminaData['mapNotes']:
             if 'zero point' in notes['text'].lower():
+                zeroPointX = notes['x']
+                zeroPointY = notes['y']
                 if 'feet' in notes['text'].lower() or 'imperial' in notes['text'].lower() or 'ft' in notes['text'].lower() or units == 'imperial':
                     measurementSystem = 'imperial'
-                if 'setxy'in notes['text'].lower():
+                if 'setxy=' in notes['text'].lower():
                     tempList = notes['text'].lower().split(' ')
                     for temp in tempList:
                         if 'setxy=' in temp:
                             tem = temp.strip('setxy=')
                             temList = tem.split(':')
                             if len(temList) == 2:
-                                try:
-                                    if 'feet' in notes['text'].lower() or 'ft' in notes['text'].lower():
-                                        measurementSystem = 'imperial'
-                                        zeroPointX = imperialMetric(float(temList[0]))
-                                        zeroPointY = imperialMetric(float(temList[1]))
-                                    else:
-                                        zeroPointX = float(temList[0])
-                                        zeroPointY = float(temList[1])
-                                except:
-                                    print('Error')
-                else:
-                    zeroPointX, zeroPointY = notes['x'], notes['y']
-                if measurementSystem == 'imperial':
-                    notes['text'] = notes['text'] + ' setXY=' + str(zeroPointX) + ':' + str(zeroPointY) + ' imperial'
-                else:
-                    notes['text'] = notes['text'] + ' setXY=' + str(zeroPointX) + ':' + str(zeroPointY) + ' metric'
+                                zeroPointX = float(temList[0])
+                                zeroPointY = float(temList[1])
+                if 'setxy=' not in notes['text'].lower():
+                        notes['text'] = notes['text'] + ' setXY=' + str(zeroPointX) + ':' + str(zeroPointY) + ' setxy in metric'
                 break
- 
     #Loop through APs and add X & Y coordinates to names. Return manipulated data and measures for reporting
     for aps in haminaData['accessPoints']:
+        tempY = apLocation(zeroPointY, aps['y'])
+        tempY = tempY * (-1)
         if measurementSystem == 'imperial':
             logicalX = imperialFormatted(metricImperial(apLocation(zeroPointX, aps['x'])))
-            logicalY = imperialFormatted(imperialMetric((apLocation(zeroPointY,aps['y']) * -1)))
-            logicalZ = imperialFormatted(imperialMetric(aps['installHeight']))
+            logicalY = imperialFormatted(metricImperial(tempY))
+            logicalZ = imperialFormatted(metricImperial(aps['installHeight']))
         else:
             logicalX = '%.3f'%(str(apLocation(zeroPointX, aps['x']))) + ' m'
-            logicalY = '%.3f'%(str((apLocation(zeroPointY, aps['y']) * -1))) + ' m'
+            logicalY = '%.3f'%(str(tempY)) + ' m'
             logicalZ = '%.3f'%(aps['installHeight'])
         absoluteZeroX, absoluteZeroY, absoluteZeroZ = aps['x'], aps['y'], aps['installHeight']
         apName = aps['name']+ ' X:'+ str(logicalX) +' Y:'+ str(logicalY)
