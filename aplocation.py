@@ -43,7 +43,10 @@ def haminaData(units,copiedData) -> list:
                                 zeroPointX = float(temList[0])
                                 zeroPointY = float(temList[1])
                 if 'setxy=' not in notes['text'].lower():
-                        notes['text'] = notes['text'] + ' setXY=' + str(zeroPointX) + ':' + str(zeroPointY) + ' setxy in metric'
+                        if measuringSystem == 'metric':
+                            notes['text'] = notes['text'] + ' setXY=' + str(zeroPointX) + ':' + str(zeroPointY) + ' setXY in meters'
+                        else:
+                            notes['text'] = notes['text'] + ' setXY=' + str(metricImperial(zeroPointX)) + ':' + str(metricImperial(zeroPointY)) + ' setXY is in feet'
                 break
     #Loop through APs and add X & Y coordinates to names. Return manipulated data and measures for reporting
     for aps in haminaData['accessPoints']:
@@ -77,7 +80,7 @@ def delivery(haminaData, data) -> str:
     for aps in haminaData['accessPoints']:
         for ap in data:
             if ap[1]['absoluteZeroX'] == aps['x'] and ap[1]['absoluteZeroY'] == aps['y'] and ap[1]['absoluteZeroZ'] ==aps['installHeight']:
-                results.append({'AP Name': ap[0]['name'],'X':ap[1]['logicalX'], 'Y': ap[1]['logicalY'], 'Install Height': ap[1]['logicalZ'], 'Make & Model': (ap[0]['make'] + ' ' + ap[0]['model']), 'Antenna': (str(ap[0]['externalAntennaMake']) + ' ' + str(ap[0]['externalAntennaModel'])), 'Mount': ap[0]['mount'], 'Elevation tilt': str(ap[0]['elevation']), 'Aziumuth': str(ap[0]['azimuth'])})
+                results.append({'AP Name': ap[0]['name'],'X':ap[1]['logicalX'], 'Y': ap[1]['logicalY'], 'Install Height': ap[1]['logicalZ'], 'Make & Model': (ap[0]['make'] + ' ' + ap[0]['model']), 'Antenna': (str(ap[0]['externalAntennaMake']) + ' ' + str(ap[0]['externalAntennaModel'])), 'Mount': ap[0]['mount'], 'Elevation tilt': str(ap[0]['elevation']), 'Azimuth': str(ap[0]['azimuth'])})
     df = pd.DataFrame(results)
     fileName = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     df.to_csv('/home/walrus/env/hamina/uploads/' + fileName + '.csv', index=False) 
