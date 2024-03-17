@@ -42,6 +42,9 @@ def haminaData(units,copiedData) -> list:
                             if len(temList) == 2:
                                 zeroPointX = float(temList[0])
                                 zeroPointY = float(temList[1])
+                                if measurementSystem == 'imperial':
+                                    zeroPointX = imperialMetric(zeroPointX)
+                                    zeroPointY = imperialMetric(zeroPointY)
                 if 'setxy=' not in notes['text'].lower():
                         if measuringSystem == 'metric':
                             notes['text'] = notes['text'] + ' setXY=' + str(zeroPointX) + ':' + str(zeroPointY) + ' setXY in meters'
