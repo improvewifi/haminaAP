@@ -50,14 +50,14 @@ def haminaData(units,copiedData) -> list:
     #Loop through APs and add X & Y coordinates to names. Return manipulated data and measures for reporting
     for aps in haminaData['accessPoints']:
         tempY = apLocation(zeroPointY, aps['y'])
-        tempY = tempY * (-1)
+        tempY = tempY * (-1) #reversing the Y axis to make it more intuitive.
         if measurementSystem == 'imperial':
             logicalX = imperialFormatted(metricImperial(apLocation(zeroPointX, aps['x'])))
             logicalY = imperialFormatted(metricImperial(tempY))
             logicalZ = imperialFormatted(metricImperial(aps['installHeight']))
         else:
-            logicalX = '%.3f'%(str(apLocation(zeroPointX, aps['x']))) + ' m'
-            logicalY = '%.3f'%(str(tempY)) + ' m'
+            logicalX = '%.3f'%(apLocation(zeroPointX, aps['x'])) + ' m'
+            logicalY = '%.3f'%(tempY) + ' m'
             logicalZ = '%.3f'%(aps['installHeight'])
         absoluteZeroX, absoluteZeroY, absoluteZeroZ = aps['x'], aps['y'], aps['installHeight']
         apName = aps['name']+ ' X:'+ str(logicalX) +' Y:'+ str(logicalY)
