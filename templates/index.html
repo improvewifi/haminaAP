@@ -9,13 +9,13 @@
                     font-family: Arial, sans-serif;
                     background-color: lightgrey;
                 }
-                #text-box {
+                .text-box {
                     width: 80%;
                     height: 300px;
                     margin: 20px auto;
                     padding: 10px;
-                    background-color: #E1E1E1;
-                    border: 1px solid #ccc;
+                    background-color: #EBEBEB;
+                    border: 1px solid #E1E1E1;
                     resize: none;
                 }
                 #copy-button {
@@ -33,10 +33,16 @@
                     margin: 10px 0;
                     padding: 10px 20px;
                     background-color: #0d6efd;
-                    color: white;
+                    color: #EBEBEB;
                     border: none;
                     border-radius: 4px;
-                 }
+                }
+                input [type=checkbox] {
+                    accent-color: #EBEBEB;
+                }
+                input [type=radio] {
+                    accent-color: #EBEBEB;
+                }
         </style>
         </head>
         <body >
@@ -58,8 +64,9 @@
                 <input type="checkbox" value="json" name="fileReq" />
             </div>        
             <h1>Hamina Copied Data</h1>
-            <textarea name="copiedData" rows="35" cols="150"></textarea>
+            <textarea name="copiedData" class="text-box"></textarea>
             <br><input type="submit" value="Submit" class="button">
         </body>
     </form>
 </html>
+
