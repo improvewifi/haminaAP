@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>AP Location results</title>
-    </head>
-    <p><a href="{{ url_for('fileDownload',filename=filename) }}">Download</a></p>
-    <body>
-    <pre>
-    {% for ap in aps %}
-    {{ ap }}
-    {% endfor %}
-    </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamina AP location results</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: lightgrey;
+  }
+  #text-box {
+    width: 80%;
+    height: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #E1E1E1;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+  #copy-button {
+    display: inline-block;
+    margin: 10px 0;;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+    {%if filename != "None" %}
+    <p><a href="{{ url_for('fileDownload', filename=filename) }}">Download requested file(s)</a></p>
+    {%endif%}
+<button id="copy-button">Copy results to clipboard</button><br>
+<textarea id="text-box" readonly>{{ aps | tojson }}</textarea>
+
+
+<script>
+  const copyButton = document.getElementById('copy-button');
+  const textBox = document.getElementById('text-box');
+
+  copyButton.addEventListener('click', function() {
+    textBox.select();
+    navigator.clipboard.writeText(textBox.value)
+      .then(() => {
+        alert('JSON copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  });
+</script>
+
+</body>
 </html>
-	
+

@@ -4,8 +4,42 @@
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Hamina AP Measurements</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: lightgrey;
+                }
+                #text-box {
+                    width: 80%;
+                    height: 300px;
+                    margin: 20px auto;
+                    padding: 10px;
+                    background-color: #E1E1E1;
+                    border: 1px solid #ccc;
+                    resize: none;
+                }
+                #copy-button {
+                    display: inline-block;
+                    margin: 10px 0;;
+                    padding: 10px 20px;
+                    background-color: #0d6efd;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                .button {
+                    display: inline-block;
+                    margin: 10px 0;
+                    padding: 10px 20px;
+                    background-color: #0d6efd;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                 }
+        </style>
         </head>
-        <body>
+        <body >
             <h1>User Preferences</h1>
             <h3>Select measurement system(s)</h3>
             <div>
@@ -18,12 +52,14 @@
             <div>
                 <label for="csv">CSV (download):</label>
                 <input type="checkbox" value="csv" name="fileReq" />
+                <label for="txt">TXT(download):</label>
+                <input type="checkbox" value="txt" name="fileReq" />
                 <label for="json">JSON (download):</label>
                 <input type="checkbox" value="json" name="fileReq" />
             </div>        
             <h1>Hamina Copied Data</h1>
             <textarea name="copiedData" rows="35" cols="150"></textarea>
-            <br><input type="submit" value="Submit">
+            <br><input type="submit" value="Submit" class="button">
         </body>
     </form>
 </html>
