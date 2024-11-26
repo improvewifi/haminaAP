@@ -5,7 +5,7 @@ Locations for Imperial are rounded to the inch, while the Metric system goes thr
 
 ## This tool adds an X & Y coordinate to AP names from a user-determined zero point. <br />
 ![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/map_with_ap_distances.png) <br />
-![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/ap__name_with_distance.png) <br />
+![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/ap_name_with_distance.png) <br />
 
 Optionally, it can create a CSV file with this information, which has been helpful to installers and other staff to make sure all APs are installed and in the correct locations.
 
