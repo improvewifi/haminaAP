@@ -2,18 +2,18 @@ import json, os
 from datetime import datetime
 
 class hamina:
-    def __init__(self, copiedData: str, measuringSystem: str ='default', measuringSystemInputType: str = 'default', logicalZeroPointX: float = 0, logicalZeroPointInputType: str = 'default', logicalZeroPointY: float = 0, filePath: str = os.path.join(os.path.expanduser('~'), 'Documents') +'/', fileName: str = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')):
+    def __init__(self, copiedData: str, measuringSystem: str ='metric', measuringSystemInputType: str = 'default', logicalZeroPointX: float = 0, logicalZeroPointInputType: str = 'default', logicalZeroPointY: float = 0, filePath: str = os.path.join(os.path.expanduser('~'), 'Documents') +'/', fileName: str = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')):
         """Object that keeps track of project attributes ans structures returned data
 
         Args:
             copiedData (str): This is for the copy and pasted data out of Hamina
-            measuringSystem (str, optional): set to 'metric' or 'imperial'. Defaults to 'imperial'.
-            measuringSystemInputType (str, optional): This defines how the data was gathered and used for trust levels ['user' > script(map note) > default]. Defaults to 'default'.
+            measuringSystem (str, optional): set to 'metric' or 'imperial'. Defaults to 'metric'.
+            measuringSystemInputType (str, optional): This defines how the data was inputed used for trust levels ['user' > script(map note) > default]. Defaults to 'default'.
             logicalZeroPointX (float, optional): set logical X coordinates to measure AP distance from. Defaults to 0.
-            logicalZeroPointInputType (str, optional): This defines how the data was gathered and used for trust levels ['user' > script(setXY) > script(map note) > default]. Defaults to 'default'.
+            logicalZeroPointInputType (str, optional): This defines how the data was inputed used for trust levels ['user' > script(setXY) > script(map note) > default]. Defaults to 'default'.
             logicalZeroPointY (float, optional): set logical Y coordinates to measure the AP distance from. Defaults to 0.
-            filePath(str, optional): Set the file path where to save data. Defaults to the user's Documents folder
-            fileName(str, optional): Set the file name. If not provided, use the current datetime. default = Year-Month-Day_Hour_Minutes_Seconds
+            filePath(str, optional): Set the file path where to save data. Defaults to users Documents folder
+            fileName(str, optional): Set the file name if not provided use datetime. default = Year-Month-Day_Hour_Minutes_Seconds
         """
         self.measuringSystem = measuringSystem
         self.measuringSystemInputType = measuringSystemInputType
