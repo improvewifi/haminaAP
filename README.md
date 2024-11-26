@@ -3,7 +3,7 @@ It would be best to duplicate the project before using this tool. (Subscription 
 Height is currently omitted because it made the names too long.
 Locations for Imperial are rounded to the inch, while the Metric system goes three decimal places.
 
-## This tool adds an X & Y coordinate to AP names from a user-determined zero point. <br />
+## This tool adds an X & Y coordinate in either Metric or Imperial units to AP names from a user-determined zero point. <br />
 ![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/map_with_ap_distances.png) <br />
 ![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/ap_name_with_distance.png) <br />
 
