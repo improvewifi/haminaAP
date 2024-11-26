@@ -25,7 +25,7 @@ In the tool:
      b. The other two options are there for backup and retention services <br />
      *Note: The files only stay on the server for a few hours and then are purged
   4. Paste in the cut/copied data from prepping the data into the text box <br />
-  ![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/past_copied_data.png) <br />
+  ![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/paste_copied_data.png) <br />
   5. click submit
   6. If downloadable deliverables were requested, select the download link, and a zip file will be downloaded with the requested contents <br />
   ![alt text](https://github.com/improvewifi/haminaAP/blob/main/readme_images/download_link_shown.png) <br />
